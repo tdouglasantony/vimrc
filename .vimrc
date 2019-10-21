@@ -39,11 +39,12 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 :set relativenumber
+:set number
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set nocompatible
-inoremap ;<space> <Esc>/<++><Enter>"_c4l
+inoremap ;<space><space> <Esc>/<++><Enter>"_c4l
 
 "LATEX COMMAND SET
 "Automatic begin/end tags
@@ -53,3 +54,15 @@ autocmd FileType tex inoremap ;al  \begin{align*}<Enter>\end{align*}<Enter><Esc>
 autocmd FileType tex inoremap ;ni \noindent
 autocmd FileType tex inoremap ;tm \noindent\textbf{<++>} \\ \\ <Enter> \noindent\textit{Proof}<++> $\qed$ \\<Esc>2ki
 autocmd FileType tex inoremap ;df \noindent\textbf{Definition <++>}:<Esc>0i
+
+"C COMMAND SET
+autocmd FileType c inoremap ;cs #include<stdio.h><Enter><Enter>main()<Enter>{<Enter><Enter>}<Esc>ki
+
+"C++ COMMAND SET
+autocmd FileTYPE cpp inoremap ;cs #include<iostream><Enter>using namespace std;<Enter><Enter>int main()<Enter>{<Enter><++><Enter><backspace>return 0;<Enter>}<Esc>ggi<Enter><Esc>ki
+autocmd FileType cpp inoremap ;fl for(int i = <++>; i < <++>; i++)<Enter>{<Enter><Enter>}<Esc>3k0i
+autocmd FileType cpp inoremap ;wl while()<Enter>{<Enter><++><Enter>}<Esc>3kwa
+
+"HTML COMMAND SET
+autocmd FileType html inoremap ;hs <!DOCTYPE html><Enter><html lang="en"><Enter><head><Enter><meta charset="utf-8"><Enter><title></title><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>5k3wa
+autocmd FileType html inoremap ;ta <<++>></<++>><Esc>0i
